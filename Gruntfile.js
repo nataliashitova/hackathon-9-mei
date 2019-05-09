@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       main: {
         files: [
           // includes files within path
-          {expand: true, flatten: true, src: ['source-files/*'], dest: 'temp/assets/', filter: 'isFile'},
+          {expand: true, cwd: 'source-files/', src: ['**'], dest: 'temp/assets/', filter: 'isFile'},
      
           // includes files within path and its sub-directories
           {expand: true, src: ['index.html'], dest: 'temp/'},
@@ -22,14 +22,15 @@ module.exports = function(grunt) {
           sourcemap: 'none'
         },
         files: {                           
-          'temp/assets/style.css': 'temp/assets/style.scss',
+          'temp/assets/css/style.css': 'temp/assets/css/style.scss',
+          'temp/assets/css/conditional-style.css': 'temp/assets/css/conditional-style.scss',
         }
       }
     },
     compress: {
       main: {
         options: {
-          archive: 'zips/task1.zip'
+          archive: 'zips/task2.zip'
         },
         files: [
           {src: ['temp/**', "!**/*.scss"]},
@@ -47,5 +48,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'My default task description', function() {
     grunt.log.writeln( 'This is the default grunt task, create a new task and configure.' );
   });
-  grunt.registerTask('task1', ['copy','sass','compress']);
+  grunt.registerTask('task2', ['copy','sass','compress']);
 };
